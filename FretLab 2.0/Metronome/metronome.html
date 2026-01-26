@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FretLab Metronome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="../home.html" class="brand">Fret<span>Lab</span></a>
+
+    <h1>Metronome</h1>
+
+    <div class="metronome-card">
+        <div class="settings-row">
+            <div class="label">Time Signature</div>
+            <select id="time-sig" class="sig-select">
+                <option value="2">2/4</option>
+                <option value="3">3/4</option>
+                <option value="4" selected>4/4</option>
+                <option value="5">5/4</option>
+                <option value="6">6/8</option>
+            </select>
+        </div>
+
+        <div class="bpm-display" id="bpm-hero">120</div>
+        
+        <div class="slider-container">
+            <input type="range" min="40" max="240" value="120" class="slider" id="bpm-slider">
+        </div>
+
+        <div class="indicators" id="indicators"></div>
+
+        <div class="controls">
+            <button class="btn-adjust" id="minus">−</button>
+            <button class="btn-main" id="start-stop">Start</button>
+            <button class="btn-adjust" id="plus">+</button>
+        </div>
+
+        <button class="tap-btn" id="tap-btn">TAP TEMPO</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
