@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frequency Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Frequency Generator</h1>
+
+    <div class="frequency-display">
+        <span id="freqValue">440.00</span> Hz
+    </div>
+
+    <input type="range" min="1" max="22000" value="440" id="freqSlider">
+
+    <div class="controls">
+        <button class="minusBtn" onclick="changeFreq(-1)">−</button>
+        <button  class="playBtn" id="playBtn">▶</button>
+        <button class="plusBtn" onclick="changeFreq(1)">+</button>
+    </div>
+
+
+    <div class="icon-controls">
+        <button class="icon-btn" onclick="openPan()"><span class="material-icons">surround_sound</span></button>
+        <button class="icon-btn" onclick="openVolume()"><span class="material-icons">volume_up</span></button>
+        <button class="icon-btn" onclick="openWaveform()"><span class="material-icons">graphic_eq</span></button>
+        <button class="icon-btn" onclick="openNotes()"><span class="material-icons">music_note</span></button>
+    </div>
+
+</div>
+
+<!-- Modals -->
+
+<div id="panModal" class="modal">
+    <div class="modal-content">
+        <h2>Channel</h2>
+        <button onclick="setPan(-1)">Left</button>
+        <button onclick="setPan(0)">Stereo</button>
+        <button onclick="setPan(1)">Right</button>
+        <br><br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<div id="volumeModal" class="modal">
+    <div class="modal-content">
+        <h2>Volume</h2>
+        <input type="range" min="0" max="1" step="0.01"
+               value="1" oninput="setVolume(this.value)">
+        <br><br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<div id="waveModal" class="modal">
+    <div class="modal-content">
+        <h2>Waveform</h2>
+        <button onclick="setWaveform('sine')">Sine</button>
+        <button onclick="setWaveform('square')">Square</button>
+        <button onclick="setWaveform('sawtooth')">Sawtooth</button>
+        <button onclick="setWaveform('triangle')">Triangle</button>
+        <br><br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<div id="notesModal" class="modal">
+    <div class="modal-content">
+        <h2>Musical Notes</h2>
+
+        <input type="text" id="noteFilter" placeholder="Filter (A, C#, D...)">
+
+        <div id="notesList" class="notes-list"></div>
+
+        <br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/audio.js') }}"></script>
+</body>
+</html>
