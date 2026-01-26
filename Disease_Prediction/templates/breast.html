@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success { background: #d4edda; color: #155724; }
+        .danger { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Breast Cancer Prediction</h2>
+
+        <form action="/predict_breast" method="POST">
+            <input type="number" step="any" name="radius_mean" placeholder="Radius Mean" required>
+            <input type="number" step="any" name="texture_mean" placeholder="Texture Mean" required>
+            <input type="number" step="any" name="perimeter_mean" placeholder="Perimeter Mean" required>
+            <input type="number" step="any" name="area_mean" placeholder="Area Mean" required>
+            <input type="number" step="any" name="smoothness_mean" placeholder="Smoothness Mean" required>
+            <input type="number" step="any" name="compactness_mean" placeholder="Compactness Mean" required>
+            <input type="number" step="any" name="concavity_mean" placeholder="Concavity Mean" required>
+            <input type="number" step="any" name="concave_points_mean" placeholder="Concave Points Mean" required>
+            <input type="number" step="any" name="symmetry_mean" placeholder="Symmetry Mean" required>
+            <input type="number" step="any" name="fractal_dimension_mean" placeholder="Fractal Dimension Mean" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+
+        {% if prediction_text %}
+        <div class="result {% if 'No' in prediction_text or 'Healthy' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

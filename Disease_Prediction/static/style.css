@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f8fc;
+  text-align: center;
+  margin-top: 50px;
+}
+.container {
+  width: 400px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input,
+button {
+  width: 90%;
+  padding: 10px;
+  margin: 8px;
+}
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.alert-success {
+  color: green;
+}
+.alert-danger {
+  color: red;
+}

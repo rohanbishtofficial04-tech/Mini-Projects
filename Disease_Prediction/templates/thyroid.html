@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Disease Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success { background: #d4edda; color: #155724; }
+        .danger { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>🧬 Thyroid Disease Prediction</h2>
+
+    <form action="{{ url_for('predict_thyroid') }}" method="POST">
+
+        <input type="number" name="age" placeholder="Age" required>
+        <input type="number" name="sex" placeholder="Sex (1 = Male, 0 = Female)" required>
+
+        <input type="number" name="on_thyroxine" placeholder="On Thyroxine (1/0)" required>
+        <input type="number" name="query_on_thyroxine" placeholder="Query on Thyroxine (1/0)" required>
+        <input type="number" name="on_antithyroid_medication" placeholder="On Antithyroid Medication (1/0)" required>
+
+        <input type="number" name="sick" placeholder="Sick (1/0)" required>
+        <input type="number" name="pregnant" placeholder="Pregnant (1/0)" required>
+
+        <input type="number" name="thyroid_surgery" placeholder="Thyroid Surgery (1/0)" required>
+        <input type="number" name="I131_treatment" placeholder="I131 Treatment (1/0)" required>
+
+        <input type="number" name="query_hypothyroid" placeholder="Query Hypothyroid (1/0)" required>
+        <input type="number" name="query_hyperthyroid" placeholder="Query Hyperthyroid (1/0)" required>
+
+        <input type="number" name="lithium" placeholder="Lithium (1/0)" required>
+        <input type="number" name="goitre" placeholder="Goitre (1/0)" required>
+        <input type="number" name="tumor" placeholder="Tumor (1/0)" required>
+        <input type="number" name="hypopituitary" placeholder="Hypopituitary (1/0)" required>
+        <input type="number" name="psych" placeholder="Psych (1/0)" required>
+
+        <input type="number" name="TSH_measured" placeholder="TSH Measured (1/0)" required>
+        <input type="number" step="any" name="TSH" placeholder="TSH Level" required>
+
+        <input type="number" name="T3_measured" placeholder="T3 Measured (1/0)" required>
+        <input type="number" step="any" name="TT4" placeholder="TT4 Level" required>
+
+        <input type="number" name="T4U_measured" placeholder="T4U Measured (1/0)" required>
+        <input type="number" step="any" name="T4U" placeholder="T4U Level" required>
+
+        <input type="number" name="FTI_measured" placeholder="FTI Measured (1/0)" required>
+        <input type="number" step="any" name="FTI" placeholder="FTI Level" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result {% if 'Normal' in prediction_text %}success{% else %}danger{% endif %}">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('index') }}">
+        <button type="submit" class="back-btn">⬅ Back</button>
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liver Disease Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success { background: #d4edda; color: #155724; }
+        .danger { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🩺 Liver Disease Prediction</h2>
+
+        <form action="{{ url_for('predict_liver') }}" method="POST">
+            <input type="number" step="any" name="age" placeholder="Age" required>
+            <input type="number" step="any" name="gender" placeholder="Gender (1=Male, 0=Female)" required>
+            <input type="number" step="any" name="tot_bilirubin" placeholder="Total Bilirubin" required>
+            <input type="number" step="any" name="direct_bilirubin" placeholder="Direct Bilirubin" required>
+            <input type="number" step="any" name="alkphos" placeholder="Alkaline Phosphotase" required>
+            <input type="number" step="any" name="sgpt" placeholder="ALT (SGPT)" required>
+            <input type="number" step="any" name="sgot" placeholder="AST (SGOT)" required>
+            <input type="number" step="any" name="tot_proteins" placeholder="Total Proteins" required>
+            <input type="number" step="any" name="albumin" placeholder="Albumin" required>
+            <input type="number" step="any" name="ag_ratio" placeholder="A/G Ratio" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+
+        {% if prediction_text %}
+        <div class="result {% if 'Healthy' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

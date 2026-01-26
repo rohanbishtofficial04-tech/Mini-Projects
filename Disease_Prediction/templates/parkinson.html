@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson’s Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Parkinson’s Disease Prediction</h2>
+        <form action="{{ url_for('predict_parkinson') }}" method="POST">
+            <input type="number" name="MDVP_Fo_Hz" placeholder="MDVP:Fo(Hz)" required>
+            <input type="number" name="MDVP_Fhi_Hz" placeholder="MDVP:Fhi(Hz)" required>
+            <input type="number" name="MDVP_Flo_Hz" placeholder="MDVP:Flo(Hz)" required>
+            <input type="number" name="MDVP_Jitter" placeholder="MDVP:Jitter(%)" required>
+            <input type="number" name="MDVP_Shimmer" placeholder="MDVP:Shimmer" required>
+            <input type="number" name="HNR" placeholder="HNR" required>
+            <input type="number" name="RPDE" placeholder="RPDE" required>
+            <input type="number" name="DFA" placeholder="DFA" required>
+            <input type="number" name="spread1" placeholder="Spread1" required>
+            <input type="number" name="spread2" placeholder="Spread2" required>
+            <button type="submit">Predict</button>
+        </form>
+        <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+        {% if prediction_text %}
+        <div class="result {% if 'No' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

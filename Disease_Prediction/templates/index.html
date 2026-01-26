@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple Disease Prediction System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: #ffffff;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+            padding-top: 25px;
+            position: fixed;
+            height: 100%;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #0078d7;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #0078d7;
+            padding: 14px 25px;
+            text-decoration: none;
+            margin: 10px 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #0078d7;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 120, 215, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 700px;
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #0078d7;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>🩺 Disease Predictor</h2>
+        <a href="{{ url_for('diabetes_page') }}">Diabetes Prediction</a>
+        <a href="{{ url_for('heart_page') }}">Heart Disease Prediction</a>
+        <a href="{{ url_for('parkinson_page') }}">Parkinson’s Prediction</a>
+        <a href="{{ url_for('breast_page') }}">Breast Cancer Prediction</a>
+        <a href="{{ url_for('anemia_page') }}">Anemia Prediction</a>
+        <a href="{{ url_for('covid_page') }}">COVID-19 Prediction</a>
+        <a href="{{ url_for('kidney_page') }}">Kidney Disease Prediction</a>
+        <a href="{{ url_for('liver_page') }}">Liver Disease Prediction</a>
+        <a href="{{ url_for('thyroid_page') }}">Thyroid Disease Prediction</a>
+        
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <h1>Welcome to the Disease Prediction System</h1>
+            <p>
+                This intelligent system can predict the likelihood of multiple diseases such as
+                <strong style="color: #0078d7;">Diabetes</strong>,
+                <strong style="color: #0078d7;">Heart Disease</strong>,
+                and <strong style="color: #0078d7;">Parkinson’s Disease</strong>
+                using advanced Machine Learning models.
+            </p>
+            <p>
+                Select any disease from the sidebar to begin your prediction.
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

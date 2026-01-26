@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+        .back-btn {
+            background: #6c757d;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .back-btn:hover {
+            background: #565e64;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .danger { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Diabetes Prediction</h2>
+        <form action="{{ url_for('predict_diabetes') }}" method="POST">
+            <input type="number" step="any" name="Pregnancies" placeholder="Pregnancies" required>
+            <input type="number" step="any" name="Glucose" placeholder="Glucose Level" required>
+            <input type="number" step="any" name="BloodPressure" placeholder="Blood Pressure" required>
+            <input type="number" step="any" name="SkinThickness" placeholder="Skin Thickness" required>
+            <input type="number" step="any" name="Insulin" placeholder="Insulin Level" required>
+            <input type="number" step="any" name="BMI" placeholder="BMI" required>
+            <input type="number" step="any" name="DiabetesPedigreeFunction" placeholder="DPF" required>
+            <input type="number" step="any" name="Age" placeholder="Age" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+
+        {% if prediction_text %}
+        <div class="result {% if 'Not' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>COVID-19 Prediction</h2>
+
+        <form action="{{ url_for('predict_covid') }}" method="POST">
+            <input type="number" name="fever" placeholder="Fever (1 = Yes, 0 = No)" required>
+            <input type="number" name="cough" placeholder="Cough (1 = Yes, 0 = No)" required>
+            <input type="number" name="fatigue" placeholder="Fatigue (1 = Yes, 0 = No)" required>
+            <input type="number" name="breathing_problem" placeholder="Breathing Problem (1 = Yes, 0 = No)" required>
+            <input type="number" name="loss_of_smell" placeholder="Loss of Smell/Taste (1 = Yes, 0 = No)" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result {% if 'Negative' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('index') }}">
+            <button type="submit" class="back-btn">⬅ Back</button>
+        </form>
+    </div>
+</body>
+
+</html>

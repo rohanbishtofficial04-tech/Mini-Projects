@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Disease Prediction</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success { background: #d4edda; color: #155724; }
+        .danger { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Kidney Disease Prediction</h2>
+
+        <form action="/predict_kidney" method="POST">
+            <input type="number" step="any" name="age" placeholder="Age" required>
+            <input type="number" step="any" name="blood_pressure" placeholder="Blood Pressure" required>
+            <input type="number" step="any" name="specific_gravity" placeholder="Specific Gravity" required>
+            <input type="number" step="any" name="albumin" placeholder="Albumin" required>
+            <input type="number" step="any" name="sugar" placeholder="Sugar" required>
+            <input type="number" step="any" name="blood_urea" placeholder="Blood Urea" required>
+            <input type="number" step="any" name="serum_creatinine" placeholder="Serum Creatinine" required>
+            <input type="number" step="any" name="sodium" placeholder="Sodium" required>
+            <input type="number" step="any" name="potassium" placeholder="Potassium" required>
+            <input type="number" step="any" name="hemoglobin" placeholder="Hemoglobin" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+
+        {% if prediction_text %}
+        <div class="result {% if 'Healthy' in prediction_text or 'No' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

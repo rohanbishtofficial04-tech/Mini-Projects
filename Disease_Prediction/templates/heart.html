@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #c1e3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 450px;
+            background: white;
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0078d7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background: #565e64;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction</h2>
+        <form action="{{ url_for('predict_heart') }}" method="POST">
+            <input type="number" name="age" placeholder="Age" required>
+            <input type="number" name="sex" placeholder="Sex (1 = Male, 0 = Female)" required>
+            <input type="number" name="cp" placeholder="Chest Pain Type (0–3)" required>
+            <input type="number" name="trestbps" placeholder="Resting Blood Pressure (mm Hg)" required>
+            <input type="number" name="chol" placeholder="Serum Cholesterol (mg/dl)" required>
+            <input type="number" name="fbs" placeholder="Fasting Blood Sugar >120 mg/dl (1 = True, 0 = False)" required>
+            <input type="number" name="restecg" placeholder="Resting ECG Results (0–2)" required>
+            <input type="number" name="thalach" placeholder="Max Heart Rate Achieved" required>
+            <input type="number" name="exang" placeholder="Exercise Induced Angina (1/0)" required>
+            <input type="number" step="any" name="oldpeak" placeholder="ST Depression Induced by Exercise" required>
+            <input type="number" name="slope" placeholder="Slope of ST Segment (0–2)" required>
+            <input type="number" name="ca" placeholder="Major Vessels (0–4) Colored by Fluoroscopy" required>
+            <input type="number" name="thal" placeholder="Thalassemia (0–3)" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result {% if 'No' in prediction_text %}success{% else %}danger{% endif %}">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('index') }}">
+            <button type="submit" class="back-btn">⬅ Back</button>
+        </form>
+    </div>
+</body>
+
+</html>
