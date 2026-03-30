@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuner | FretLab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tuner.css') }}">
+</head>
+<body>
+
+    <a href="{{ url_for('home') }}" class="brand" id="brand-link">Fret<span>Lab</span></a>
+    <h1 id="page-title">Select Tuner</h1>
+
+    
+    <div id="landing-screen" class="tuner-card active">
+        <div class="logo-icon pulse-animation"></div>
+        <h2 class="landing-title">How do you want to tune?</h2>
+        <p class="landing-subtitle">Choose a tuning mode to get started.</p>
+        
+        <div class="mode-selection-grid">
+            <button id="btn-ear" class="mode-card">
+                <div class="mode-icon"></div>
+                <h3>By Ear</h3>
+                <p>Tune manually using high-quality reference tones.</p>
+            </button>
+            
+            <button id="btn-mic" class="mode-card">
+                <div class="mode-icon"></div>
+                <h3>Microphone</h3>
+                <p>Auto-detect pitch and tune with visual feedback.</p>
+            </button>
+        </div>
+    </div>
+
+    
+    <div id="tuner-screen" class="tuner-card">
+        
+        
+        <input type="radio" name="tuning-mode" id="mode-down" value="-1">
+        <input type="radio" name="tuning-mode" id="mode-std" value="0" checked>
+        <input type="radio" name="tuning-mode" id="mode-up" value="1">
+
+        <div class="tuning-modes">
+            <label for="mode-down">1/2 Down</label>
+            <label for="mode-std">Standard</label>
+            <label for="mode-up">1/2 Up</label>
+        </div>
+
+        <header>
+            <div class="mode-toggle">
+                <span id="label-auto" class="active">Auto</span>
+                <label class="switch">
+                    <input type="checkbox" id="mode-switch">
+                    <span class="slider round"></span>
+                </label>
+                <span id="label-manual">Manual</span>
+            </div>
+        </header>
+
+        <div class="tuner-layout">
+            
+            <div class="peg-column left-strings">
+                <button class="peg string-btn" data-string="D">
+                    <span class="string-name">D</span>
+                    <span class="string-freq">146.8 Hz</span>
+                </button>
+                <button class="peg string-btn" data-string="A">
+                    <span class="string-name">A</span>
+                    <span class="string-freq">110.0 Hz</span>
+                </button>
+                <button class="peg string-btn" data-string="E2">
+                    <span class="string-name">E</span>
+                    <span class="string-freq">82.4 Hz</span>
+                </button>
+            </div>
+
+            
+            <div class="headstock-visual center-dial">
+                <div class="dial-background"></div>
+                
+                
+                <div id="tuner-ball" class="tuner-ball"></div>
+                
+                
+                <div id="target-circle" class="target-circle">
+                    <span id="current-note" class="current-note">-</span>
+                    <span id="current-cents" class="current-cents">Waiting</span>
+                </div>
+            </div>
+
+            
+            <div class="peg-column right-strings">
+                <button class="peg string-btn" data-string="G">
+                    <span class="string-name">G</span>
+                    <span class="string-freq">196.0 Hz</span>
+                </button>
+                <button class="peg string-btn" data-string="B">
+                    <span class="string-name">B</span>
+                    <span class="string-freq">246.9 Hz</span>
+                </button>
+                <button class="peg string-btn" data-string="E4">
+                    <span class="string-name">e</span>
+                    <span class="string-freq">329.6 Hz</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="info-bar">
+            <span id="exact-frequency">-- Hz</span>
+        </div>
+        
+    </div>
+    
+    <script src="{{ url_for('static', filename='tuner.js') }}"></script>
+</body>
+</html>

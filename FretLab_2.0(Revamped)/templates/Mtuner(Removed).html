@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FretLab | Manual Tuner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tuner.css') }}">
+</head>
+<body>
+
+    <a href="{{ url_for('home') }}" class="brand">Fret<span>Lab</span></a>
+    <h1>Manual Tuner</h1>
+
+    <div class="tuner-card">
+        <input type="radio" name="mode" id="mode-down">
+        <input type="radio" name="mode" id="mode-std" checked>
+        <input type="radio" name="mode" id="mode-up">
+
+        <div class="tuning-modes">
+            <label for="mode-down">1/2 Down</label>
+            <label for="mode-std">Standard</label>
+            <label for="mode-up">1/2 Up</label>
+        </div>
+
+        <div class="tuner-layout">
+            <div class="tuning-set" id="set-std">
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/D3.mp3', this)">D</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/A2.mp3', this)">A</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/E2.mp3', this)">E</button>
+                </div>
+                <div class="headstock-visual"></div>
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/G3.mp3', this)">G</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/B3.mp3', this)">B</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Standard/E4.mp3', this)">e</button>
+                </div>
+            </div>
+
+            <div class="tuning-set" id="set-down">
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Csharp3.mp3', this)">Db</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Ab2.mp3', this)">Ab</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Eb2.mp3', this)">Eb</button>
+                </div>
+                <div class="headstock-visual"></div>
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Fsharp3.mp3', this)">Gb</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Asharp3.mp3', this)">Bb</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Down/Eb4.mp3', this)">eb</button>
+                </div>
+            </div>
+
+            <div class="tuning-set" id="set-up">
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/Dsharp3.mp3', this)">Eb</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/Asharp2.mp3', this)">Bb</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/F2.mp3', this)">F</button>
+                </div>
+                <div class="headstock-visual"></div>
+                <div class="peg-column">
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/Gsharp3.mp3', this)">Ab</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/C4.mp3', this)">C</button>
+                    <button class="peg" onclick="playAudio('/static/Tuning/Half_Up/F4.mp3', this)">f</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="instruction">Tap a peg to hear the note</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='tuner.js') }}"></script>
+</body>
+</html>

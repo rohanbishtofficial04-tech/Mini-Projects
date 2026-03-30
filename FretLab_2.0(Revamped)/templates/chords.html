@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FretLab | Chord Library</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chords.css') }}">
+
+</head>
+<body>
+
+    <a href="{{ url_for('home') }}" class="brand">Fret<span>Lab</span></a>
+
+    <h1>Chord Library</h1>
+
+    <div class="chord-card">
+        <div class="chord-name" id="display-name">C Major</div>
+        
+        <div class="fretboard-grid" id="grid">
+            </div>
+
+        <div class="controls">
+            <div class="select-group">
+                <select id="root-selector"></select>
+                <select id="quality-selector"></select>
+            </div>
+            <button id="play-btn">Strum Chord</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chords.js') }}"></script>
+</body>
+</html>
